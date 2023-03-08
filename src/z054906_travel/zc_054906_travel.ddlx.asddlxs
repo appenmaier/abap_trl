@@ -1,0 +1,103 @@
+@Metadata.layer: #CUSTOMER
+
+@UI.headerInfo:
+{
+  typeName: 'Travel',
+  typeNamePlural: 'Travels',
+  title.value: 'TravelId',
+  description.value: 'Description'
+}
+annotate view ZC_054906_Travel with
+{
+
+  /* Facets */
+  @UI:
+  {
+    facet:
+    [
+      { position: 10, type: #IDENTIFICATION_REFERENCE, label: 'Travel Details' },
+      { position: 20, type: #LINEITEM_REFERENCE, targetElement: '_Bookings', label: 'Bookings' }
+    ]
+  }
+
+  /* Actions */
+  @UI.lineItem:[{ position: 10, type: #FOR_ACTION, dataAction: 'do_something', label: 'Get Travel ID' }]
+  TravelUuid;
+
+  /* Fields */
+  @UI:
+  {
+    lineItem: [{ position: 10, importance: #HIGH }],
+    identification: [{ position: 10 }]
+  }
+  TravelId;
+
+  @UI:
+  {
+    lineItem: [{ position: 20, importance: #HIGH }],
+    selectionField: [{ position: 10 }],
+    identification: [{ position: 20 }]
+  }
+  AgencyId;
+
+  @UI:
+  {
+    lineItem: [{ position: 30, importance: #HIGH }],
+    selectionField: [{ position: 20 }],
+    identification: [{ position: 30 }]
+  }
+  CustomerId;
+
+  @UI:
+  {
+    lineItem: [{ position: 40, importance: #HIGH }],
+    selectionField: [{ position: 30 }],
+    identification: [{ position: 40 }]
+  }
+  BeginDate;
+
+  @UI:
+  {
+    lineItem: [{ position: 50, importance: #HIGH }],
+    selectionField: [{ position: 40 }],
+    identification: [{ position: 50 }]
+  }
+  EndDate;
+
+
+  @UI.lineItem: [{ position: 100, type: #AS_DATAPOINT }]
+  @UI.dataPoint: { targetValueElement: 'BookingFee', criticality: 'BookingFeeCriticality', visualization: #PROGRESS }
+  @UI.identification: [{ position: 50 }]
+  BookingFee;
+
+  @UI:
+  {
+    lineItem: [{ position: 60, importance: #HIGH }],
+    identification: [{ position: 60 }]
+  }
+  TotalPrice;
+
+  @UI.identification: [{ position: 70 }]
+  CurrencyCode;
+
+  @UI:
+  {
+    lineItem: [{ position: 70, importance: #HIGH }],
+    identification: [{ position: 80 }]
+  }
+  Description;
+
+  /* Administrative Data */
+  @UI.hidden: true
+  CreatedBy;
+
+  @UI.hidden: true
+  CreatedAt;
+
+  @UI.hidden: true
+  LastChangedBy;
+
+  @UI.hidden: true
+  LastChangedAt;
+
+}

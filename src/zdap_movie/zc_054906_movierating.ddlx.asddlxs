@@ -1,0 +1,31 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{
+  typeName: 'Rating',
+  typeNamePlural: 'Ratings',
+  title.value: 'Rating',
+  description.value: 'UserName'
+}
+annotate view ZC_054906_MovieRating with
+{
+
+  /* Facets */
+  @UI.facet: [{ position: 10, type: #IDENTIFICATION_REFERENCE, label: 'Details' }]
+
+  /* Fields */
+  @UI.hidden: true
+  MovieRatingUuid;
+
+  @UI.hidden: true
+  MovieUuid;
+
+  @UI.lineItem: [{ position: 10, criticality: 'RatingCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  @UI.identification: [{ position: 10 }]
+  UserName;
+
+  @UI.lineItem: [{ position: 20, type: #AS_DATAPOINT }]
+  @UI.dataPoint: { visualization: #RATING, targetValue: 10, criticality: 'RatingCriticality' }
+  @UI.identification: [{ position: 20, criticality: 'RatingCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  Rating;
+
+}

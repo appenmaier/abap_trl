@@ -1,0 +1,113 @@
+managed implementation in class zbp_054906_travel unique;
+strict ( 2 );
+with draft;
+
+/* ------------------------ */
+/* Composition Root: Travel */
+/* ------------------------ */
+define behavior for ZI_054906_Travel alias Travel
+persistent table z054906_travel
+draft table z054906_travel_d
+lock master
+total etag LastChangedAt
+authorization master ( instance )
+etag master LastChangedAt
+
+{
+
+  /* Field Controls */
+  field ( readonly, numbering : managed ) traveluuid;
+  field ( readonly ) travelid, BookingFeeCriticality;
+  field ( readonly ) lastchangedat, lastchangedby, createdat, createdby;
+  field ( mandatory ) agencyid, bookingfee, currencycode, BeginDate, EndDate;
+//  field ( features : instance ) CustomerId;
+
+  /* Associations */
+  association _Bookings { create; with draft; }
+
+  /* CRUD-Methods */
+  create;
+  update;
+  delete;
+
+  /* Actions */
+  action do_something;
+
+  /* Validations */
+  validation agency on save { create; update; field AgencyId; }
+
+  /* Determinations */
+  determination determineTravelId on modify { create; }
+
+  /* Draft Actions */
+  draft action Resume;
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft determine action Prepare
+  {
+    validation agency;
+  }
+
+  /* Mapping */
+  mapping for z054906_travel corresponding
+  {
+    AgencyId = agency_id;
+    BeginDate = begin_date;
+    BookingFee = booking_fee;
+    CreatedAt = created_at;
+    CreatedBy = created_by;
+    CurrencyCode = currency_code;
+    CustomerId = customer_id;
+    EndDate = end_date;
+    LastChangedAt = last_changed_at;
+    LastChangedBy = last_changed_by;
+    TotalPrice = total_price;
+    TravelId = travel_id;
+    TravelUuid = travel_uuid;
+  }
+}
+
+/* -------------------------- */
+/* Composition Child: Booking */
+/* -------------------------- */
+define behavior for ZI_054906_Booking alias Booking
+persistent table z054906_booking
+draft table z054906_book_d
+lock dependent by _Travel
+authorization dependent by _Travel
+etag dependent by _Travel
+{
+  /* Field Controls */
+  field ( readonly, numbering : managed ) bookinguuid;
+  field ( readonly ) traveluuid, flight, locallastchangedat, lastchangedby, createdby;
+  //  field ( mandatory ) agencyid, bookingfee, currencycode, BeginDate, EndDate, CustomerID;
+
+  /* Associations */
+  association _Travel { with draft; }
+
+  /* CRUD-Methods */
+  update;
+  delete;
+
+  /* Determinations */
+  determination determineCustomer on modify { create; }
+
+  /* Mapping */
+  mapping for z054906_booking corresponding
+  {
+    BookingDate = booking_date;
+    BookingId = booking_id;
+    BookingUuid = booking_uuid;
+    CarrierId = carrier_id;
+    ConnectionId = connection_id;
+    CreatedBy = created_by;
+    CurrencyCode = currency_code;
+    CustomerId = customer_id;
+    FlightDate = flight_date;
+    FlightPrice = flight_price;
+    LastChangedBy = last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    TravelUuid = travel_uuid;
+  }
+}

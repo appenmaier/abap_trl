@@ -1,0 +1,18 @@
+managed implementation in class zbp_i_dap_p2 unique;
+strict ( 1 );
+
+define behavior for ZI_DAP_P2 //alias <alias_name>
+persistent table zdap_p2
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+  action set_description;
+
+  field ( readonly, numbering : managed ) Uuid;
+
+}
