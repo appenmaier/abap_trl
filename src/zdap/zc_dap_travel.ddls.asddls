@@ -18,6 +18,7 @@ define root view entity ZC_DAP_Travel
       TotalPrice,
       @Consumption.valueHelpDefinition: [{ entity: { name: 'I_CurrencyStdVH', element: 'Currency' } }]
       CurrencyCode,
+      Url,
 
       /* Transient Data */
       BeginDateCriticality,

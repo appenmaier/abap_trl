@@ -10,8 +10,8 @@ define view entity ZI_054906_MovieRating
       rating            as Rating,
 
       /* Transient Data */
-      case when rating < 3.3 then 1
-           when rating < 6.7 then 2
+      case when rating < 1.7 then 1
+           when rating < 3.3 then 2
            else 3
       end               as RatingCriticality,
 

@@ -22,7 +22,16 @@ CLASS zcl_dap_movie_generator IMPLEMENTATION.
     DATA ratings TYPE TABLE OF zdap_movierating.
 
     DELETE FROM zdap_movie.
+    IF sy-subrc <> 0.
+      out->write( |Error: DELETE FROM zdap_movie| ).
+    ENDIF.
+    out->write( |Deleted: { sy-dbcnt } movies| ).
+
     DELETE FROM zdap_movierating.
+    IF sy-subrc <> 0.
+      out->write( |Error: DELETE FROM zdap_movierating| ).
+    ENDIF.
+    out->write( |Deleted: { sy-dbcnt } ratings| ).
 
     " Movie
     movie-client = sy-mandt.
@@ -36,15 +45,15 @@ CLASS zcl_dap_movie_generator IMPLEMENTATION.
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'IMDB'.
-    rating-rating = '9.2'.
+    rating-user_name = 'Hans Maier'.
+    rating-rating = '4.5'.
     APPEND rating TO ratings.
 
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'Rotten Tomatoes'.
-    rating-rating = '9.1'.
+    rating-user_name = 'Peter Schmid'.
+    rating-rating = '5'.
     APPEND rating TO ratings.
 
     " Movie
@@ -59,15 +68,22 @@ CLASS zcl_dap_movie_generator IMPLEMENTATION.
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'IMDB'.
-    rating-rating = '9.2'.
+    rating-user_name = 'Max Müller'.
+    rating-rating = '3'.
     APPEND rating TO ratings.
 
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'Rotten Tomatoes'.
-    rating-rating = '9.7'.
+    rating-user_name = 'Heidi Meier'.
+    rating-rating = '5'.
+    APPEND rating TO ratings.
+
+    rating-client = sy-mandt.
+    rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    rating-movie_uuid = movie-movie_uuid.
+    rating-user_name = 'Peter Schmid'.
+    rating-rating = '4.5'.
     APPEND rating TO ratings.
 
     " Movie
@@ -82,15 +98,22 @@ CLASS zcl_dap_movie_generator IMPLEMENTATION.
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'IMDB'.
-    rating-rating = '9.0'.
+    rating-user_name = 'Franz Xaver'.
+    rating-rating = '4'.
     APPEND rating TO ratings.
 
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'Rotten Tomatoes'.
-    rating-rating = '9.4'.
+    rating-user_name = 'Luisa Rodriguez'.
+    rating-rating = '4.5'.
+    APPEND rating TO ratings.
+
+    rating-client = sy-mandt.
+    rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    rating-movie_uuid = movie-movie_uuid.
+    rating-user_name = 'Peter Schmid'.
+    rating-rating = '5'.
     APPEND rating TO ratings.
 
     " Movie
@@ -105,15 +128,8 @@ CLASS zcl_dap_movie_generator IMPLEMENTATION.
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'IMDB'.
-    rating-rating = '9.0'.
-    APPEND rating TO ratings.
-
-    rating-client = sy-mandt.
-    rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
-    rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'Rotten Tomatoes'.
-    rating-rating = '9.6'.
+    rating-user_name = 'Petra Huber'.
+    rating-rating = '3'.
     APPEND rating TO ratings.
 
     " Movie
@@ -128,15 +144,29 @@ CLASS zcl_dap_movie_generator IMPLEMENTATION.
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'IMDB'.
-    rating-rating = '8.9'.
+    rating-user_name = 'Max Müller'.
+    rating-rating = '4'.
     APPEND rating TO ratings.
 
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'Rotten Tomatoes'.
-    rating-rating = '9.8'.
+    rating-user_name = 'Verena Schmied'.
+    rating-rating = '5'.
+    APPEND rating TO ratings.
+
+    rating-client = sy-mandt.
+    rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    rating-movie_uuid = movie-movie_uuid.
+    rating-user_name = 'Luisa Rodriguez'.
+    rating-rating = '2'.
+    APPEND rating TO ratings.
+
+    rating-client = sy-mandt.
+    rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    rating-movie_uuid = movie-movie_uuid.
+    rating-user_name = 'Franz Xaver'.
+    rating-rating = '5'.
     APPEND rating TO ratings.
 
     " Movie
@@ -151,15 +181,8 @@ CLASS zcl_dap_movie_generator IMPLEMENTATION.
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'IMDB'.
-    rating-rating = '8.7'.
-    APPEND rating TO ratings.
-
-    rating-client = sy-mandt.
-    rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
-    rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'Rotten Tomatoes'.
-    rating-rating = '7.9'.
+    rating-user_name = 'Bruno Braun'.
+    rating-rating = '4.5'.
     APPEND rating TO ratings.
 
     " Movie
@@ -174,19 +197,28 @@ CLASS zcl_dap_movie_generator IMPLEMENTATION.
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'IMDB'.
-    rating-rating = '8.8'.
+    rating-user_name = 'Petra Müller'.
+    rating-rating = '5'.
     APPEND rating TO ratings.
 
     rating-client = sy-mandt.
     rating-movie_rating_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     rating-movie_uuid = movie-movie_uuid.
-    rating-user_name = 'Rotten Tomatoes'.
-    rating-rating = '9.2'.
+    rating-user_name = 'Luisa Rodriguez'.
+    rating-rating = '4.5'.
     APPEND rating TO ratings.
 
     INSERT zdap_movie FROM TABLE @movies.
+    IF sy-subrc <> 0.
+      out->write( |Error: INSERT zdap_movie FROM TABLE @movies| ).
+    ENDIF.
+    out->write( |Inserted: { sy-dbcnt } movies| ).
+
     INSERT zdap_movierating FROM TABLE @ratings.
+    IF sy-subrc <> 0.
+      out->write( |Error: INSERT zdap_movierating FROM TABLE @ratings| ).
+    ENDIF.
+    out->write( |Inserted: { sy-dbcnt } ratings| ).
 
   ENDMETHOD.
 

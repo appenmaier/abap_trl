@@ -15,6 +15,8 @@ define root view entity ZI_DAP_Travel
       @Semantics.amount.currencyCode: 'CurrencyCode'
       total_price        as TotalPrice,
       currency_code      as CurrencyCode,
+      @Semantics.imageUrl: true
+      url                as Url,
 
       /* Transient Data */
       case when dats_days_between($session.system_date, begin_date) >= 14 then 3

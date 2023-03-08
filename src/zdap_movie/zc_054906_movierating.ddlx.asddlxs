@@ -24,7 +24,7 @@ annotate view ZC_054906_MovieRating with
   UserName;
 
   @UI.lineItem: [{ position: 20, type: #AS_DATAPOINT }]
-  @UI.dataPoint: { visualization: #RATING, targetValue: 10, criticality: 'RatingCriticality' }
+  @UI.dataPoint: { visualization: #RATING, targetValue: 5, criticality: 'RatingCriticality' }
   @UI.identification: [{ position: 20, criticality: 'RatingCriticality', criticalityRepresentation: #WITHOUT_ICON }]
   Rating;
 

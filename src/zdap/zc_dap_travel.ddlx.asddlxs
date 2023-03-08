@@ -4,7 +4,8 @@
   typeNamePlural: 'Travels',
   typeName: 'Travel',
   title.value: 'TravelId',
-  description.value: 'Description'
+  description.value: 'Description',
+  imageUrl: 'Url'
 }
 @UI.presentationVariant: [{ sortOrder: [{ by: 'BeginDate', direction: #DESC }] }]
 annotate view ZC_DAP_Travel with
@@ -52,6 +53,9 @@ annotate view ZC_DAP_Travel with
   @UI.selectionField: [{ position: 60 }]
   @UI.identification: [{ position: 60 }]
   TotalPrice;
+
+  @UI.identification: [{ position: 70 }]
+  Url;
 
   //  @UI.hidden: true
   //  CurrencyCode;
