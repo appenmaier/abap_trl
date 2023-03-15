@@ -1,5 +1,0 @@
-@EndUserText.label: 'Movie'
-define service ZUI_RDVT2_MOVIE {
-  expose ZC_RDVT2_Movie as Movie;
-  expose ZC_RDVT2_Rating as Rating;
-}

@@ -1,0 +1,21 @@
+projection;
+strict ( 2 );
+
+define behavior for Z054906_1_C_Travel //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Bookings { create; }
+}
+
+define behavior for Z054906_1_C_Booking //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use action cancel_booking;
+
+  use association _Travel;
+}

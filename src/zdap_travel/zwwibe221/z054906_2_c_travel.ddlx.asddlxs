@@ -1,0 +1,61 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{
+  typeNamePlural: 'Travels',
+  typeName: 'Travel',
+  title.value: 'TravelId',
+  description.value: 'Description',
+  imageUrl: 'Url'
+}
+@UI.presentationVariant: [{ sortOrder: [{ by: 'BeginDate', direction: #DESC }]}]
+annotate view Z054906_2_C_Travel with
+{
+  /* Facets */
+  @UI.facet:
+  [
+    { position: 10, type: #IDENTIFICATION_REFERENCE, label: 'Travel Details' },
+    { position: 20, type: #LINEITEM_REFERENCE, targetElement: '_Bookings', label: 'Bookings' }
+  ]
+
+   /* Fields */
+  @UI.hidden: true
+  TravelUuid;
+
+  @UI.lineItem: [{ position: 10, criticality: 'BeginDateCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  @UI.identification: [{ position: 10 }]
+  TravelId;
+
+  @UI.hidden: true
+  BeginDateCriticality;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.identification: [{ position: 20 }]
+  CustomerId;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.identification: [{ position: 30 }]
+  BeginDate;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.identification: [{ position: 40 }]
+  EndDate;
+
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  Description;
+
+  @UI.lineItem: [{ position: 60 }]
+  @UI.selectionField: [{ position: 40 }]
+  @UI.identification: [{ position: 60 }]
+  TotalPrice;
+
+  @UI.identification: [{ position: 70 }]
+  Url;
+
+  //  @UI.identification: [{ position: 70 }]
+  //  CurrencyCode;
+
+}

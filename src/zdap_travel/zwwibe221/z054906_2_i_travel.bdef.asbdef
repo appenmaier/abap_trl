@@ -1,0 +1,80 @@
+managed implementation in class zbp_054906_2_i_travel unique;
+strict ( 1 );
+
+/* Travel */
+define behavior for Z054906_2_I_Travel alias Travel
+persistent table z054906_2_travel
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  /* CUD-Methods */
+  create;
+  update;
+  delete;
+  association _Bookings { create; }
+
+  /* Field Controls */
+  field ( readonly, numbering : managed ) TravelUuid;
+  field ( readonly ) TravelId;
+  field ( readonly : update ) BeginDate, CustomerId, EndDate;
+  field ( mandatory ) Description;
+  field ( mandatory : create ) BeginDate, CustomerId, EndDate;
+
+  /* Actions, Validations and Determinations */
+  validation validateEndDate on save { create; update; field EndDate; }
+  determination determineTravelId on save { create; }
+
+
+
+  /* Mapping */
+  mapping for z054906_2_travel corresponding
+    {
+      BeginDate    = begin_date;
+      CurrencyCode = currency_code;
+      CustomerId   = customer_id;
+      Description  = description;
+      EndDate      = end_date;
+      TotalPrice   = total_price;
+      TravelId     = travel_id;
+      TravelUuid   = travel_uuid;
+    }
+
+}
+
+/* Booking */
+define behavior for Z054906_2_I_Booking alias Booking
+persistent table z054906_2_book
+lock dependent by _Travel
+authorization dependent by _Travel
+//etag master <field_name>
+{
+  /* CUD-Methods */
+  update;
+  delete;
+  association _Travel;
+
+  /* Actions, Validations and Determinations */
+  action cancel_booking;
+
+  /* Field Controls */
+  field ( readonly ) TravelUuid;
+  field ( readonly, numbering : managed ) BookingUuid;
+
+  /* Mapping */
+  mapping for z054906_2_book corresponding
+    {
+      BookingDate  = booking_date;
+      BookingId    = booking_id;
+      BookingUuid  = booking_uuid;
+      CarrierId    = carrier_id;
+      ConnectionId = connection_id;
+      CurrencyCode = currency_code;
+      FlightDate   = flight_date;
+      FlightPrice  = flight_price;
+      Status       = status;
+      TravelUuid   = travel_uuid;
+    }
+
+
+}
