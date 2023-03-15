@@ -1,5 +1,0 @@
-@EndUserText.label: 'Parent 2'
-define service ZUI_DAP_P2 {
-  expose ZC_DAP_P2;
-  expose ZC_DAP_C;
-}

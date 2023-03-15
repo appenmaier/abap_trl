@@ -1,0 +1,45 @@
+managed implementation in class zbp_i_rdvt2_movie unique;
+strict ( 2 );
+
+define behavior for ZI_RDVT2_Movie alias Movie
+persistent table z054906_movie
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+  association _Ratings { create; }
+
+  action show_message;
+
+  field ( readonly, numbering : managed ) MovieUuid;
+  mapping for z054906_movie corresponding
+    {
+      MovieUuid      = movie_uuid;
+      PublishingYear = publishing_year;
+    }
+ }
+
+define behavior for ZI_RDVT2_Rating alias Rating
+persistent table z054906_movrat
+lock dependent by _Movie
+authorization dependent by _Movie
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  field ( readonly ) MovieUuid;
+  field ( readonly, numbering : managed ) MovieRatingUuid;
+
+  association _Movie;
+  mapping for z054906_movrat corresponding
+    {
+      MovieRatingUuid = movie_rating_uuid;
+      MovieUuid       = movie_uuid;
+      UserName        = user_name;
+    }
+ }

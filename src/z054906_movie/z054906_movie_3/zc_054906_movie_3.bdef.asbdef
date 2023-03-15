@@ -1,0 +1,21 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_054906_Movie_3 alias Movie
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Ratings { create; }
+
+  use action show_message;
+}
+
+define behavior for ZC_054906_Rating_3 alias Rating
+{
+  use update;
+  use delete;
+
+  use association _Movie;
+}

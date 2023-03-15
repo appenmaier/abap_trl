@@ -1,0 +1,42 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{
+  typeNamePlural: 'Movies',
+  typeName: 'Movie',
+  title.value: 'Title',
+  description.value: 'PublishingYear',
+  imageUrl: 'Url'
+
+}
+annotate view ZC_RDVT1_Movie with
+{
+
+  @UI.facet:
+  [
+    { position: 10, type: #IDENTIFICATION_REFERENCE, label: 'Movie Details' },
+    { position: 20, type: #LINEITEM_REFERENCE, targetElement: '_Ratings', label: 'Ratings' }
+  ]
+
+  @UI.lineItem: [{ position: 10, type: #FOR_ACTION, dataAction: 'SHOW_AVG_RATING', label: 'Show Average Rating' }]
+
+  @UI.identification: [{ position: 10 }]
+  MovieUuid;
+
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 20 }]
+  Title;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.identification: [{ position: 30 }]
+  Genre;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.identification: [{ position: 40 }]
+  PublishingYear;
+
+  @UI.identification: [{ position: 50 }]
+  Url;
+
+}

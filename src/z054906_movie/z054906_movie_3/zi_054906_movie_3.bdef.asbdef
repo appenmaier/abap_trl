@@ -1,0 +1,58 @@
+managed implementation in class zbp_i_054906_movie_3 unique;
+strict ( 2 );
+
+define behavior for ZI_054906_Movie_3 alias Movie
+persistent table z054906_movie
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  /* CUD-Methods */
+  create;
+  update;
+  delete;
+  association _Ratings { create; }
+
+  /* Field Controls */
+  field ( readonly, numbering : managed ) MovieUuid;
+  field ( readonly ) AverageRating, AverageRatingCriticality;
+  field ( readonly : update ) Genre, PublishingYear, Title;
+  field ( mandatory: create ) Genre, PublishingYear, Title;
+
+  /* Actions, Validations and Determinations */
+  action show_message;
+  validation validate_genre on save { create; update; field Genre; }
+
+  /* Mapping */
+  mapping for z054906_movie corresponding
+    {
+      MovieUuid      = movie_uuid;
+      PublishingYear = publishing_year;
+    }
+ }
+
+define behavior for ZI_054906_Rating_3 alias Rating
+persistent table z054906_movrat
+lock dependent by _Movie
+authorization dependent by _Movie
+//etag master <field_name>
+{
+  /* CUD-Methods */
+  update;
+  delete;
+  association _Movie;
+
+  /* Field Controls */
+  field ( readonly ) MovieUuid;
+  field ( readonly, numbering : managed ) MovieRatingUuid;
+  field ( readonly : update ) UserName, Rating;
+  field ( mandatory : create ) UserName, Rating;
+
+  /* Mapping */
+  mapping for z054906_movrat corresponding
+    {
+      MovieRatingUuid = movie_rating_uuid;
+      MovieUuid       = movie_uuid;
+      UserName        = user_name;
+    }
+ }

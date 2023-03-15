@@ -1,0 +1,53 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{
+  typeName: 'Movie',
+  typeNamePlural: 'Movies',
+  title.value: 'Title',
+  description.value: 'PublishingYear',
+  imageUrl: 'Url'
+}
+@UI.presentationVariant: [{ sortOrder: [{ by: 'AverageRating', direction: #DESC }] }]
+annotate view ZC_054906_Movie_3 with
+{
+
+  /* Facets */
+  @UI.facet:
+  [
+    { position: 10, type: #IDENTIFICATION_REFERENCE, label: 'Details' },
+    { position: 20, type: #LINEITEM_REFERENCE, targetElement: '_Ratings', label: 'Ratings' }
+  ]
+
+  /* Actions */
+  @UI.lineItem: [{ position: 10, type: #FOR_ACTION, dataAction: 'SHOW_MESSAGE', label: 'Oppress Button' }]
+
+  /* Fields */
+  @UI.identification: [{ position: 10 }]
+  MovieUuid;
+
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 20 }]
+  Title;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.identification: [{ position: 30 }]
+  Genre;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.identification: [{ position: 40 }]
+  PublishingYear;
+
+  @UI.identification: [{ position: 50 }]
+  Url;
+
+  @UI.lineItem: [{ position: 40, criticality: 'AverageRatingCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.identification: [{ position: 60, criticality: 'AverageRatingCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  AverageRating;
+
+  @UI.hidden: true
+  AverageRatingCriticality;
+
+}
