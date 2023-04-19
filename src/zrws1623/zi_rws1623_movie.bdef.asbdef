@@ -1,0 +1,66 @@
+managed implementation in class zbp_i_rws1623_movie unique;
+strict ( 2 );
+
+/* Root Entity: Movie */
+define behavior for ZI_RWS1623_Movie alias Movie
+persistent table zrws1623_movie
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  association _Ratings { create; }
+
+  static action show_message;
+  action rate_movie parameter zi_rws1623_ratingparameter;
+
+  validation validate_genre on save { create; field Genre; }
+
+  field ( readonly, numbering : managed ) MovieUuid;
+  field ( readonly ) AverageRating, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy;
+  field ( mandatory : create ) Genre, PublishingYear, Title;
+  field ( readonly : update ) Genre, PublishingYear, Title;
+  mapping for zrws1623_movie corresponding
+    {
+      CreatedAt      = created_at;
+      CreatedBy      = created_by;
+      ImageUrl       = image_url;
+      LastChangedAt  = last_changed_at;
+      LastChangedBy  = last_changed_by;
+      MovieUuid      = movie_uuid;
+      PublishingYear = publishing_year;
+    }
+
+
+}
+
+/* Child Entity: Rating */
+define behavior for ZI_RWS1623_Rating alias Rating
+persistent table zrws1623_rating
+lock dependent by _Movie
+authorization dependent by _Movie
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  association _Movie;
+
+  field ( readonly, numbering : managed ) RatingUuid;
+  field ( readonly ) MovieUuid, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy;
+  field ( mandatory : create ) Rating, UserName;
+  field ( readonly : update ) Rating, UserName;
+  mapping for zrws1623_rating corresponding
+    {
+      CreatedAt     = created_at;
+      CreatedBy     = created_by;
+      LastChangedAt = last_changed_at;
+      LastChangedBy = last_changed_by;
+      MovieUuid     = movie_uuid;
+      RatingUuid    = rating_uuid;
+      UserName      = user_name;
+    }
+
+}

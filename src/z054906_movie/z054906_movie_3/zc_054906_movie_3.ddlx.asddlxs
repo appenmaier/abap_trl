@@ -19,7 +19,11 @@ annotate view ZC_054906_Movie_3 with
   ]
 
   /* Actions */
-  @UI.lineItem: [{ position: 10, type: #FOR_ACTION, dataAction: 'SHOW_MESSAGE', label: 'Oppress Button' }]
+  @UI.lineItem:
+  [
+    { position: 10, type: #FOR_ACTION, dataAction: 'SHOW_MESSAGE', label: 'Oppress Button' },
+    { position: 10, type: #FOR_ACTION, dataAction: 'RATE_MOVIE', label: 'Rate Movie' }
+  ]
 
   /* Fields */
   @UI.identification: [{ position: 10 }]

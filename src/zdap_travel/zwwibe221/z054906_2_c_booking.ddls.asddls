@@ -19,6 +19,7 @@ define view entity Z054906_2_C_Booking
 
       /* Transient Data */
       StatusCriticality,
+      StatusText,
 
       /* Associations */
       _Travel : redirected to parent Z054906_2_C_Travel

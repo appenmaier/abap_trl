@@ -1,0 +1,11 @@
+@EndUserText.label: 'Movie'
+@MappingRole: true
+define role ZI_RWS1623_MOVIE {
+  grant
+    select
+      on
+        ZI_RWS1623_MOVIE
+          where
+            PublishingYear > '1980';
+            
+}

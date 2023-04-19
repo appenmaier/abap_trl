@@ -1,0 +1,7 @@
+@EndUserText.label: 'Movie'
+@MappingRole: true
+define role ZC_RWS1623_MOVIE {
+  grant select on ZC_RWS1623_MOVIE
+    where inheriting conditions from entity ZI_RWS1623_Movie;
+            
+}

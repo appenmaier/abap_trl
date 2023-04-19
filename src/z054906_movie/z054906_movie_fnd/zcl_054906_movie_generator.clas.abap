@@ -11,7 +11,6 @@ CLASS zcl_054906_movie_generator DEFINITION
 ENDCLASS.
 
 
-
 CLASS zcl_054906_movie_generator IMPLEMENTATION.
 
   METHOD if_oo_adt_classrun~main.

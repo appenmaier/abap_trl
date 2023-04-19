@@ -2,14 +2,9 @@
 "BASEINFO":
 {
 "FROM":
-[
-"Z054906_2_I_STATUSTEXT",
-"Z054906_2_BOOK"
-],
+[],
 "ASSOCIATED":
-[
-"Z054906_2_I_TRAVEL"
-],
+[],
 "BASE":
 [],
 "ANNO_REF":

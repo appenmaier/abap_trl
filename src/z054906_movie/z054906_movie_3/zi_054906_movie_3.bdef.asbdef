@@ -17,10 +17,11 @@ authorization master ( instance )
   field ( readonly, numbering : managed ) MovieUuid;
   field ( readonly ) AverageRating, AverageRatingCriticality;
   field ( readonly : update ) Genre, PublishingYear, Title;
-  field ( mandatory: create ) Genre, PublishingYear, Title;
+  field ( mandatory : create ) Genre, PublishingYear, Title;
 
   /* Actions, Validations and Determinations */
   action show_message;
+  action rate_movie parameter ZI_054906_RatingParameter;
   validation validate_genre on save { create; update; field Genre; }
 
   /* Mapping */
